@@ -1,0 +1,69 @@
+---
+import MeetingIcon from './svgs/MeetingIcon.astro';
+import DesignIcon from './svgs/DesignIcon.astro';
+import ProductionIcon from './svgs/ProductionIcon.astro';
+import DeliveryIcon from './svgs/DeliveryIcon.astro';
+---
+
+<div class="max-w-7xl mx-auto p-4">
+  <section class="bg-slate-200/50 p-4 md:p-12">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-light text-amber-900 mb-4">Cómo Trabajamos</h2>
+      <p class="text-lg text-slate-600">Nuestro proceso de trabajo está diseñado para garantizar la máxima calidad y satisfacción en cada proyecto.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Step 1 -->
+      <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md duration-300 transform hover:-translate-y-1">
+        <div class="flex justify-center">
+          <MeetingIcon />
+        </div>
+        <h3 class="text-2xl font-semibold text-amber-900 text-center mb-3">
+          Reunión y Medición
+        </h3>
+        <p class="text-slate-600 text-center">
+          Coordinamos una visita para evaluar el espacio y tomar las medidas exactas para tu mueble a medida.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md duration-300 transform hover:-translate-y-1">
+        <div class="flex justify-center">
+          <DesignIcon />
+        </div>
+        <h3 class="text-2xl font-semibold text-amber-900 text-center mb-3">
+          Diseño 3D
+        </h3>
+        <p class="text-slate-600 text-center">
+          Creamos un modelo 3D detallado para que puedas visualizar el resultado final antes de la fabricación.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md duration-300 transform hover:-translate-y-1">
+        <div class="flex justify-center">
+          <ProductionIcon />
+        </div>
+        <h3 class="text-2xl font-semibold text-amber-900 text-center mb-3">
+          Fabricación
+        </h3>
+        <p class="text-slate-600 text-center">
+          Nuestros artesanos trabajan con materiales de primera calidad para dar vida a tu diseño personalizado.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md duration-300 transform hover:-translate-y-1">
+        <div class="flex justify-center">
+          <DeliveryIcon />
+        </div>
+        <h3 class="text-2xl font-semibold text-amber-900 text-center mb-3">
+          Instalación
+        </h3>
+        <p class="text-slate-600 text-center">
+          Realizamos la instalación profesional en tu hogar, asegurando que todo quede perfectamente colocado.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
