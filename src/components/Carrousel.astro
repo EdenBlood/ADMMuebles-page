@@ -1,0 +1,38 @@
+---
+const images = [
+  "/muebles/mueble-1.jpg",
+  "/muebles/mueble-2.jpg",
+  "/muebles/mueble-3.jpg",
+  "/muebles/mueble-4.jpg",
+  "/muebles/mueble-5.jpg",
+  "/muebles/mueble-6.jpg",
+];
+const double = images.concat(images); // duplicar para loop suave
+---
+
+<section class="relative h-full w-full overflow-hidden">
+  <div class="slider-track flex" role="list">
+    {double.map((src, i) => (
+      <div class="slide flex-none " role="listitem">
+        <img src={src} alt={`Mueble ${i % images.length + 1}`} class="h-[75vh] w-[50vw] object-cover object-center" />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+.slider-track {
+  will-change: transform;
+  animation: slide 30s linear infinite;
+}
+.slider-track:hover { animation-play-state: paused; }
+
+/* Mueve la pista completa la mitad (porque duplicamos slides). */
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Ajustes opcionales para evitar saltos en algunos navegadores */
+.slide img { display:block; }
+</style>
