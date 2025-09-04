@@ -40,13 +40,13 @@ const images: ImagesState[] = [
 const double = images.concat(images); // duplicar para loop suave
 ---
 
-<div class="mb-4 w-full bg-slate-200">
+<div class="mb-4 w-full bg-slate-200 relative">
   <section class="relative h-full w-full overflow-hidden">
-    <div class="slider-track flex" role="list">
+    <div class="slider-track flex w-max" role="list">
       {double.map((img, i) => (
         <div class="slide flex-none relative" role="listitem">
-          <img src={img.src} alt={`Mueble ${i % images.length + 1}`} class="h-[80vh] w-[50vw] object-cover object-center" />
-          <div class="absolute bottom-6 left-6 bg-slate-200/20 p-3">
+          <img src={img.src} alt={`Mueble ${i % images.length + 1}`} class="block h-[80vh] w-[50vw] object-cover object-center" />
+          <div class="absolute bottom-6 left-6 bg-slate-200/50 p-3">
             <h2 class="text-5xl font-light">{img.title}</h2>
             <p class="text-xl font-extralight">{img.description}</p>
           </div>
@@ -59,16 +59,13 @@ const double = images.concat(images); // duplicar para loop suave
 <style>
 .slider-track {
   will-change: transform;
-  animation: slide 35s linear infinite;
+  animation: slide 30s linear infinite;
 }
 .slider-track:hover { animation-play-state: paused; }
 
 /* Mueve la pista completa la mitad (porque duplicamos slides). */
 @keyframes slide {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-300%); }
+  100% { transform: translateX(-50%); }
 }
-
-/* Ajustes opcionales para evitar saltos en algunos navegadores */
-.slide img { display:block; }
 </style>
