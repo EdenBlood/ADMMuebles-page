@@ -1,71 +1,21 @@
-import { useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 import type { MueblesGallery } from "../types/index.types";
+import { muebles } from "../storage";
 
 export function Gallery() {
-  const muebles: MueblesGallery[] = [
-    {
-      // img: "/images/gallery/1.jpg",
-      id: 1,
-      img: "/muebles/mueble-1.jpg",
-      alt: "Mueble 1",
-      title: "Mueble 1",
-      description: "Descripción del mueble 1",
-      category: "Rack TV",
-      materials: ["Nebraska", "Nogal", "Blanco"],
-    },
-    {
-      id: 2,
-      img: "/muebles/mueble-2.jpg",
-      alt: "Mueble 2",
-      title: "Mueble 2",
-      description: "Descripción del mueble 2",
-      category: "Sofá",
-      materials: ["Cuero", "Tela"],
-    },
-    {
-      id: 3,
-      img: "/muebles/mueble-3.jpg",
-      alt: "Mueble 3",
-      title: "Mueble 3",
-      description: "Descripción del mueble 3",
-      category: "Mesa de centro",
-      materials: ["Madera", "Vidrio"],
-    },
-    {
-      id: 4,
-      img: "/muebles/mueble-4.jpg",
-      alt: "Mueble 4",
-      title: "Mueble 4",
-      description: "Descripción del mueble 4",
-      category: "Mesa de centro",
-      materials: ["Madera", "Vidrio"],
-    },
-    {
-      id: 5,
-      img: "/muebles/mueble-5.jpg",
-      alt: "Mueble 5",
-      title: "Mueble 5",
-      description: "Descripción del mueble 5",
-      category: "Mesa de centro",
-      materials: ["Madera", "Vidrio"],
-    },
-    {
-      id: 6,
-      img: "/muebles/mueble-6.jpg",
-      alt: "Mueble 6",
-      title: "Mueble 6",
-      description: "Descripción del mueble 6",
-      category: "Mesa de centro",
-      materials: ["Madera", "Vidrio"],
-    },
-  ];
-
   const [mueblesFiltered, setMueblesFiltered] =
     useState<MueblesGallery[]>(muebles);
+  const [showMore, setShowMore] = useState(false);
+
   const categories = muebles.reduce((acc: string[], mueble) => {
     if (!acc.includes(mueble.category)) acc.push(mueble.category);
     return acc;
   }, []);
+
+  const visible = useMemo(
+    () => (showMore ? mueblesFiltered : mueblesFiltered.slice(0, 8)),
+    [showMore, mueblesFiltered]
+  );
 
   const handleFilter = (e: Event) => {
     const target = e.target as HTMLSelectElement;
@@ -95,28 +45,37 @@ export function Gallery() {
         </div>
 
         <div class="grid grid-cols-4 gap-4 py-4">
-          {mueblesFiltered.map((mueble) => (
-            <article
-              key={mueble.id}
-              class="w-full h-70 bg-white shadow-md transition-all duration-500 
-              opacity-0 animate-fadeIn hover:shadow-lg hover:-translate-y-1"
-            >
-              <img
-                src={mueble.img}
-                alt={mueble.alt}
-                class="w-full h-50 object-cover object-center"
-              />
-              <div class="p-2">
-                <h3 class="text-lg font-normal mt-2 text-red-900">
-                  {mueble.title}
-                </h3>
-                <p class="text-sm font-light text-gray-600">
-                  {mueble.description}
-                </p>
-              </div>
-            </article>
+          {visible.map((mueble) => (
+            <a key={mueble.id} href={`/muebles/${mueble.id}`} class="group">
+              <article
+                class="w-full h-70 bg-white shadow-md transition-all duration-500 
+              opacity-0 animate-fadeIn hover:shadow-lg hover:-translate-y-1 "
+              >
+                <div class="overflow-hidden h-50">
+                  <img
+                    src={mueble.img}
+                    alt={mueble.alt}
+                    class="w-full h-50 object-cover object-center scale-100 group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div class="p-2">
+                  <h3 class="text-lg font-normal mt-2 text-red-900 group-hover:text-red-700 transition-colors duration-300">
+                    {mueble.title}
+                  </h3>
+                  <p class="text-sm font-light text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                    {mueble.description}
+                  </p>
+                </div>
+              </article>
+            </a>
           ))}
         </div>
+        <button
+          class="bg-red-900 text-white px-4 py-2 rounded mt-4 hover:bg-red-800 block mx-auto"
+          onClick={() => setShowMore(!showMore)}
+        >
+          Mostrar {showMore ? "menos" : "más"}
+        </button>
       </section>
     </div>
   );
