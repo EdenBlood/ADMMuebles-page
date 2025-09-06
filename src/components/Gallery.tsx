@@ -27,9 +27,9 @@ export function Gallery() {
     );
   };
   return (
-    <div class="max-w-7xl mx-auto p-4">
-      <section class="flex flex-col">
-        <h1 class="text-5xl font-normal mb-2 text-red-900 text-center">
+    <div class="max-w-7xl mx-auto p-4 my-4">
+      <section class="flex flex-col gap-2">
+        <h1 class="text-5xl font-normal mb-6 text-red-900 text-center">
           Galería de muebles que realizamos.
         </h1>
         <div class="flex justify-center gap-4">
@@ -56,6 +56,7 @@ export function Gallery() {
                     src={mueble.img}
                     alt={mueble.alt}
                     class="w-full h-50 object-cover object-center scale-100 group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
                 <div class="p-2">
@@ -71,7 +72,7 @@ export function Gallery() {
           ))}
         </div>
         <button
-          class="bg-red-900 text-white px-4 py-2 rounded mt-4 hover:bg-red-800 block mx-auto"
+          class="bg-red-900 cursor-pointer text-white px-4 py-2 rounded mt-4 hover:bg-red-800 block mx-auto transtiion-colors duration-300"
           onClick={() => setShowMore(!showMore)}
         >
           Mostrar {showMore ? "menos" : "más"}

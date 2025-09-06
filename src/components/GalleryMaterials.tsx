@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 import type { Materials } from "../types/index.types";
 import { materials } from "../storage";
 
@@ -32,9 +32,9 @@ export function GalleryMaterials() {
   }
 
   return (
-    <div class="max-w-7xl mx-auto p-4">
-      <section class="flex flex-col">
-        <h1 class="text-5xl font-normal mb-2 text-red-900 text-center">
+    <div class="max-w-7xl mx-auto p-4 my-4">
+      <section class="flex flex-col gap-2">
+        <h1 class="text-5xl font-normal mb-6 text-red-900 text-center">
           Materiales que utilizamos
         </h1>
 
@@ -60,6 +60,7 @@ export function GalleryMaterials() {
                 src={material.img}
                 alt={material.alt}
                 class="w-full h-50 object-cover object-center"
+                loading="lazy"
               />
               <div class="p-2">
                 <h3 class="text-lg font-normal mt-2 text-red-900">
@@ -73,7 +74,7 @@ export function GalleryMaterials() {
           ))}
         </div>
         <button
-          class="bg-red-900 text-white px-4 py-2 rounded mt-4 hover:bg-red-800 block mx-auto"
+          class="bg-red-900 cursor-pointer text-white px-4 py-2 rounded mt-4 hover:bg-red-800 block mx-auto transition-colors duration-300"
           onClick={() => setShowMore(!showMore)}
         >
           Mostrar {showMore ? "menos" : "más"}
