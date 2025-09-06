@@ -5,6 +5,7 @@ import WhyUs from '../components/WhyUs.astro';
 import WeProducts from '../components/WeProducts.astro';
 import CallToAction from '../components/CallToAction.astro';
 import {Gallery} from '../components/Gallery';
+import { GalleryMaterials } from '../components/GalleryMaterials';
 ---
 
 <Layout>
@@ -19,10 +20,9 @@ import {Gallery} from '../components/Gallery';
 		
 		<CallToAction />
 		
-		<!-- Materiales y colores -->
-
-		<!-- Galería -->
 		<Gallery client:load/>
+		
+		<GalleryMaterials client:load />
 
 		<!-- Testimonios -->
 
