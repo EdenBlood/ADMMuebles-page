@@ -1,59 +1,19 @@
 ---
-interface ImagesState {
-  id: number;
-  src: string;
-  title: string;
-  description: string;
-}
+import { muebles } from "../storage";
+import type { MueblesGallery } from "../types/index.types";
 
-const images: ImagesState[] = [
-  {
-    id: 1,
-    src: "/muebles/mueble-1.jpg",
-    title: "Rack TV",
-    description: "Paraíso Laqueado, Negro ceramico y Negro mate."
-  },
-  {
-    id: 2,
-    src: "/muebles/mueble-2.jpg",
-    title: "Exhibidor Cosmética",
-    description: "Gris Pelado, Blanco brillante"
-  },
-  {
-    id: 3,
-    src: "/muebles/mueble-3.jpg",
-    title: "Rack TV",
-    description: "Paraiso Laqueado, Negro ceramico y Negro mate."
-  },
-  {
-    id: 4,
-    src: "/muebles/mueble-4.jpg",
-    title: "Rack TV",
-    description: "Paraiso Laqueado, Negro ceramico y Negro mate."
-  },
-  {
-    id: 5,
-    src: "/muebles/mueble-5.jpg",
-    title: "Rack TV",
-    description: "Paraiso Laqueado, Negro ceramico y Negro mate."
-  },
-  {
-    id: 6,
-    src: "/muebles/mueble-6.jpg",
-    title: "Rack TV",
-    description: "Paraíso Laqueado, Negro ceramico y Negro mate."
-  },
-];
-const double = images.concat(images); // duplicar para loop suave
+const mueblesArray = muebles.slice(0,6);
+
+const double:MueblesGallery[] = mueblesArray.concat(mueblesArray); // duplicar para loop suave
 ---
 
 <div class="mb-4 w-full bg-slate-200 relative">
   <section class="relative h-full w-full overflow-hidden">
     <div class="slider-track flex w-max" role="list">
-      {double.map((mueble, i) => (
+      {double.map((mueble:MueblesGallery) => (
         <a href={`/muebles/${mueble.id}`}>
           <div class="slide flex-none relative" role="listitem">
-            <img src={mueble.src} alt={`Mueble ${i % images.length + 1}`} class="block h-[80vh] w-[50vw] object-cover object-center" />
+            <img src={mueble.img} alt={mueble.alt} class="block h-[80vh] w-[50vw] object-cover object-center" loading="lazy"/>
             <div class="absolute bottom-6 left-6 bg-slate-200/50 p-3">
               <h2 class="text-5xl font-light">{mueble.title}</h2>
               <p class="text-xl font-extralight">{mueble.description}</p>
@@ -70,9 +30,10 @@ const double = images.concat(images); // duplicar para loop suave
   will-change: transform;
   animation: slide 30s linear infinite;
 }
-.slider-track:hover { animation-play-state: paused; }
+.slider-track:hover { 
+  animation-play-state: paused;
+}
 
-/* Mueve la pista completa la mitad (porque duplicamos slides). */
 @keyframes slide {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
