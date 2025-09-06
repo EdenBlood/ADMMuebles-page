@@ -158,3 +158,26 @@ export const muebles: MueblesGallery[] = [
     materials: ["Madera", "Vidrio"],
   },
 ];
+
+export const testimonials = [
+  {
+    id: 1,
+    author: "Juan Pérez",
+    text: "Excelente servicio y calidad en los muebles. Muy recomendados.",
+  },
+  {
+    id: 2,
+    author: "María López",
+    text: "Los muebles son de excelente calidad y el servicio al cliente es excepcional.",
+  },
+  {
+    id: 3,
+    author: "Carlos García",
+    text: "Estoy muy satisfecho con mi compra. Los muebles son hermosos y funcionales.",
+  },
+  {
+    id: 4,
+    author: "Ana Martínez",
+    text: "Los muebles son de alta calidad y el diseño es impresionante.",
+  },
+];
