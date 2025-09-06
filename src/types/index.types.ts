@@ -50,3 +50,15 @@ export type Materials = {
   alt: string;
   title: string;
 };
+
+export type LinksState = {
+  instagram: string;
+  facebook: string;
+  email: string;
+  phone: string;
+  locationString: string;
+  phoneSpacing: string;
+  whatsapp: string;
+  location: string;
+  website: string;
+};
