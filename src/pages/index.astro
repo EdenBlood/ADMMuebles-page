@@ -4,14 +4,13 @@ import Layout from '../layouts/Layout.astro';
 import WhyUs from '../components/WhyUs.astro';
 import WeProducts from '../components/WeProducts.astro';
 import CallToAction from '../components/CallToAction.astro';
-import {Gallery} from '../components/Gallery';
+import { Gallery } from '../components/Gallery';
 import { GalleryMaterials } from '../components/GalleryMaterials';
+import { Testimonials	 	} from '../components/Testimonials';
 ---
 
 <Layout>
 	<main class="mt-20.5">
-		<!-- NavBar -->
-
 		<Carrousel />
 
 		<WeProducts />
@@ -23,9 +22,11 @@ import { GalleryMaterials } from '../components/GalleryMaterials';
 		<Gallery client:load/>
 		
 		<GalleryMaterials client:load />
-
+		
 		<!-- Testimonios -->
-
+		<Testimonials client:load />
+		
 		<!-- Llamado a la acción de nuevo -->
+		<CallToAction />
 	</main>
 </Layout>
