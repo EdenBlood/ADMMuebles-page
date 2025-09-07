@@ -1,8 +1,10 @@
 import type { LinksState } from "../types/index.types";
 
 export const links: LinksState = {
-  instagram: "https://www.instagram.com/adm_muebles/",
-  facebook: "https://www.facebook.com/adm.muebles.5",
+  instagram: "https://www.instagram.com/admmuebles_?igsh=ajZjcTF1OWMxcTFy",
+  instagramString:
+    "https://www.instagram.com/admmuebles_?igsh=ajZjcTF1OWMxcTFy",
+  facebook: "https://www.facebook.com/share/1BHmWWPiwL/",
   email: "info@adm-muebles.com",
   phone: "+5493413415656",
   whatsapp: `https://wa.me/5493413415656`,

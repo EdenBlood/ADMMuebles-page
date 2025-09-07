@@ -172,8 +172,8 @@ export const testimonials = [
   },
   {
     id: 3,
-    author: "Carlos García",
-    text: "Estoy muy satisfecho con mi compra. Los muebles son hermosos y funcionales.",
+    author: "El Bana",
+    text: "Ayy! pero estos muebles están como lokitaa, Sapeee!!.",
   },
   {
     id: 4,

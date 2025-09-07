@@ -53,6 +53,7 @@ export type Materials = {
 
 export type LinksState = {
   instagram: string;
+  instagramString: string;
   facebook: string;
   email: string;
   phone: string;
