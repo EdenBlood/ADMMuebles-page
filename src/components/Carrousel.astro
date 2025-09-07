@@ -13,7 +13,7 @@ const double:MueblesGallery[] = mueblesArray.concat(mueblesArray); // duplicar p
       {double.map((mueble:MueblesGallery) => (
         <a href={`/muebles/${mueble.id}`}>
           <div class="slide flex-none relative" role="listitem">
-            <img src={mueble.img} alt={mueble.alt} class="block h-[60vh] md:h-[80vh] w-[100vw] md:w-[50vw] object-cover object-center" loading="lazy"/>
+            <img src={mueble.img} alt={mueble.alt} class="block h-[60vh] md:h-[80vh] w-[100vw] lg:w-[50vw] object-cover object-center" loading="lazy"/>
             <div class="absolute bottom-6 left-6 bg-slate-200/50 p-3">
               <h2 class="text-3xl md:text-5xl font-light">{mueble.title}</h2>
               <p class="text-md md:text-xl font-extralight">{mueble.description}</p>

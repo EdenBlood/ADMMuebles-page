@@ -10,7 +10,7 @@ export function Gallery() {
 
   //* Comprobamos el tamaño de la pantalla
   useEffect(() => {
-    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    const checkScreen = () => setIsMobile(window.innerWidth < 900);
     checkScreen();
     window.addEventListener("resize", checkScreen);
     return () => window.removeEventListener("resize", checkScreen);
@@ -54,7 +54,7 @@ export function Gallery() {
           </select>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
           {visible.map((mueble) => (
             <a key={mueble.id} href={`/muebles/${mueble.id}`} class="group">
               <article

@@ -9,7 +9,7 @@ export function GalleryMaterials() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    const checkScreen = () => setIsMobile(window.innerWidth < 900);
     checkScreen();
     window.addEventListener("resize", checkScreen);
     return () => window.removeEventListener("resize", checkScreen);
@@ -29,7 +29,7 @@ export function GalleryMaterials() {
       showMore
         ? materialsFiltered
         : materialsFiltered.slice(0, isMobile ? 6 : 8),
-    [showMore, materialsFiltered]
+    [showMore, materialsFiltered, isMobile]
   );
 
   function handleFilter(e: Event) {
@@ -61,7 +61,7 @@ export function GalleryMaterials() {
           </select>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
           {visible.map((material) => (
             <article
               class="w-full h-70 bg-white shadow-md transition-all duration-500 
