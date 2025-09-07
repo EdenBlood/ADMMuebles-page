@@ -1,4 +1,4 @@
-import { useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import type { MueblesGallery } from "../types/index.types";
 import { muebles } from "../storage";
 
@@ -6,6 +6,15 @@ export function Gallery() {
   const [mueblesFiltered, setMueblesFiltered] =
     useState<MueblesGallery[]>(muebles);
   const [showMore, setShowMore] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  //* Comprobamos el tamaño de la pantalla
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   const categories = muebles.reduce((acc: string[], mueble) => {
     if (!acc.includes(mueble.category)) acc.push(mueble.category);
@@ -13,8 +22,9 @@ export function Gallery() {
   }, []);
 
   const visible = useMemo(
-    () => (showMore ? mueblesFiltered : mueblesFiltered.slice(0, 8)),
-    [showMore, mueblesFiltered]
+    () =>
+      showMore ? mueblesFiltered : mueblesFiltered.slice(0, isMobile ? 6 : 8),
+    [showMore, mueblesFiltered, isMobile]
   );
 
   const handleFilter = (e: Event) => {
@@ -27,9 +37,9 @@ export function Gallery() {
     );
   };
   return (
-    <div class="max-w-7xl mx-auto p-4 my-4">
-      <section class="flex flex-col gap-2">
-        <h1 class="text-5xl font-normal mb-6 text-red-900 text-center">
+    <div class="max-w-7xl mx-auto p-2 md:p-4 my-4">
+      <section class="flex flex-col md:gap-2">
+        <h1 class="text-4xl md:text-5xl font-normal mb-4 md:mb-6 text-red-900 text-center">
           Galería de muebles que realizamos.
         </h1>
         <div class="flex justify-center gap-4">
@@ -44,7 +54,7 @@ export function Gallery() {
           </select>
         </div>
 
-        <div class="grid grid-cols-4 gap-4 py-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
           {visible.map((mueble) => (
             <a key={mueble.id} href={`/muebles/${mueble.id}`} class="group">
               <article
@@ -60,7 +70,10 @@ export function Gallery() {
                   />
                 </div>
                 <div class="p-2">
-                  <h3 class="text-lg font-normal mt-2 text-red-900 group-hover:text-red-700 transition-colors duration-300">
+                  <h3
+                    title={mueble.title}
+                    class="text-lg font-normal mt-2 text-red-900 group-hover:text-red-700 transition-colors duration-300 line-clamp-1"
+                  >
                     {mueble.title}
                   </h3>
                   <p class="text-sm font-light text-gray-600 group-hover:text-gray-800 transition-colors duration-300">

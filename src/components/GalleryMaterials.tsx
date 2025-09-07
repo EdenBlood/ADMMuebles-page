@@ -1,4 +1,4 @@
-import { useMemo, useState } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import type { Materials } from "../types/index.types";
 import { materials } from "../storage";
 
@@ -6,6 +6,14 @@ export function GalleryMaterials() {
   const [showMore, setShowMore] = useState(false);
   const [materialsFiltered, setMaterialsFiltered] =
     useState<Materials[]>(materials);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   const colors = materials.reduce((acc: string[], material) => {
     if (material.color) {
@@ -17,7 +25,10 @@ export function GalleryMaterials() {
   }, []);
 
   const visible = useMemo(
-    () => (showMore ? materialsFiltered : materialsFiltered.slice(0, 8)),
+    () =>
+      showMore
+        ? materialsFiltered
+        : materialsFiltered.slice(0, isMobile ? 6 : 8),
     [showMore, materialsFiltered]
   );
 
@@ -32,13 +43,13 @@ export function GalleryMaterials() {
   }
 
   return (
-    <div class="max-w-7xl mx-auto p-4 my-4">
+    <div class="max-w-7xl mx-auto p-2 md:p-4 my-4">
       <section class="flex flex-col gap-2">
-        <h1 class="text-5xl font-normal mb-6 text-red-900 text-center">
+        <h1 class="text-4xl md:text-5xl font-normal mb-4 md:mb-6 text-red-900 text-center">
           Materiales que utilizamos
         </h1>
 
-        <div class="flex justify-center gap-4">
+        <div class="flex justify-center md:gap-4">
           <label for="materials" class="text-md font-light text-gray-600">
             Filtrar por Color:
           </label>
@@ -50,7 +61,7 @@ export function GalleryMaterials() {
           </select>
         </div>
 
-        <div class="grid grid-cols-4 gap-4 py-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
           {visible.map((material) => (
             <article
               class="w-full h-70 bg-white shadow-md transition-all duration-500 
@@ -63,7 +74,10 @@ export function GalleryMaterials() {
                 loading="lazy"
               />
               <div class="p-2">
-                <h3 class="text-lg font-normal mt-2 text-red-900">
+                <h3
+                  title={material.title}
+                  class="text-lg font-normal mt-2 text-red-900 line-clamp-1"
+                >
                   {material.title}
                 </h3>
                 <p class="text-sm font-light text-gray-600">
