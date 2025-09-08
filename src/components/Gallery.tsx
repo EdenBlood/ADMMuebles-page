@@ -54,7 +54,7 @@ export function Gallery() {
           </select>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
           {visible.map((mueble) => (
             <a key={mueble.id} href={`/muebles/${mueble.id}`} class="group">
               <article

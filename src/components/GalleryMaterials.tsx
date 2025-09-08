@@ -61,7 +61,7 @@ export function GalleryMaterials() {
           </select>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
           {visible.map((material) => (
             <article
               class="w-full h-70 bg-white shadow-md transition-all duration-500 
