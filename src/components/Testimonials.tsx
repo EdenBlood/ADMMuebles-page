@@ -3,7 +3,7 @@ import { testimonials } from "../storage";
 export function Testimonials() {
   return (
     <div class="bg-red-900 p-2 md:p-4 my-4">
-      <section class="max-w-7xl mx-auto flex flex-col gap-6 items-center p-8  w-full h-full">
+      <section class="max-w-7xl mx-auto flex flex-col gap-6 items-center p-8 w-full h-full">
         <h2 class="text-4xl md:text-5xl font-normal text-white text-center mb-2">
           Testimonios
         </h2>
